@@ -1,0 +1,61 @@
+﻿@model CuaHangThietBiDienTu.Context.HOADON
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Xóa đơn hàng</h2>
+
+    <h3>Bạn có chắc muốn xóa</h3>
+    <div>
+
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Ngày tạo
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NGAYTAO)
+            </dd>
+
+            <dt>
+                Tình trạng đơn hàng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TINHTRANGDONHANG)
+            </dd>
+
+            <dt>
+                Tên khách hàng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.KHACHHANG.TENKH)
+            </dd>
+
+            <dt>
+                Tên nhân viên
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NHANVIEN.TENNV)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Xóa" class="btn btn-default" /> 
+                @Html.ActionLink("Về trang danh sách", "Index")
+            </div>
+        }
+    </div>
+
+</div>

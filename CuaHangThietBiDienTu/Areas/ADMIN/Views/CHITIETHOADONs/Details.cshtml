@@ -1,0 +1,52 @@
+﻿@model CuaHangThietBiDienTu.Context.CHITIETHOADON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+
+    <div>
+        <h4>Chi tiết hóa đơn</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Mã hóa đơn
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MAHOADON)
+            </dd>
+
+            <dt>
+                Mã sản phẩm
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.MASP)
+            </dd>
+
+            <dt>
+               Số lượng
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.SOLUONG)
+            </dd>
+
+            <dt>
+               Đơn giá xuất
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.DONGIAXUAT)
+            </dd>
+        </dl>
+
+        <div>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { maHoaDon = Model.MAHOADON, maSP = Model.MASP, @class = "btn btn-success" }) |
+            @Html.ActionLink("Trở về trang danh sách", "Index", null, new { @class = "btn btn-default ml-2" })
+           
+        </div>
+    </div>
+
+</div>

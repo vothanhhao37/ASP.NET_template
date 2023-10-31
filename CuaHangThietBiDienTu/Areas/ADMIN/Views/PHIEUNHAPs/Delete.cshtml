@@ -1,0 +1,34 @@
+﻿@model CuaHangThietBiDienTu.Context.PHIEUNHAP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+<h3>Bạn có chắc muốn xóa phiếu nhập này?</h3>
+<div class="container">
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ngày nhập: @Html.DisplayFor(model => model.NGAYNHAP)
+        </dt>
+
+
+        <dt>
+            Tên nhân viên: @Html.DisplayFor(model => model.NHANVIEN.TENNV)
+        </dt>
+
+        <dd>
+            
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-primary" /> |
+            @Html.ActionLink("Trở lại danh sách", "Index")
+        </div>
+    }
+</div>

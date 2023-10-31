@@ -1,0 +1,105 @@
+﻿@model List<CuaHangThietBiDienTu.Context.HOADON>
+@{
+    ViewBag.Title = "DonDatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="section-pagetop bg-gray">
+    <div class="container">
+        <h2 class="title-page">Tài khoản của tôi</h2>
+    </div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION PAGETOP END// ========================= -->
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+
+        <div class="row">
+            <aside class="col-md-3">
+                <nav class="list-group">
+                    <a class="list-group-item" href="@Url.Action("Detail",new { makh = Session["MAKH"] })"> Thông tin chung </a>
+                    <a class="list-group-item active" href="@Url.Action("DonDatHang")"> Đơn hàng </a>
+                    <a class="list-group-item" href="@Url.Action("Edit")">Cài đặt thông tin</a>
+                </nav>
+            </aside> <!-- col.// -->
+            <main class="col-md-9">
+
+                @{
+                    foreach (var item in Model)
+                    {
+                        decimal totalAmount = 0;
+                        foreach (var sp in item.CHITIETHOADONs)
+                        {
+                            totalAmount += sp.SOLUONG * sp.DONGIAXUAT;
+                        }
+                        <article class="card mb-4">
+                            <header class="card-header">
+                                <a href="#" class="float-right"> <i class="fa fa-print"></i></a>
+                                <strong class="d-inline-block mr-3">ID đơn đặt hàng: @item.MAHOADON</strong>
+                                <span>Ngày đặt: @(item.NGAYTAO?.ToString("dd/MM/yyyy")) </span>
+                            </header>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <h6 class="text-muted">Giao hàng đến</h6>
+                                        <p>
+                                            @item.KHACHHANG.TENKH <br>
+                                            SĐT @item.KHACHHANG.SDT Email: @item.KHACHHANG.EMAIL <br>
+                                            Địa chỉ: @item.KHACHHANG.DIACHI <br>
+                                          
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h6 class="text-muted">Thanh toán</h6>
+                                        <span class="text-success">
+                                            <i class="fab fa fa-money-bill"></i>
+                                            Thanh toán khi nhận hàng
+                                        </span>
+                                        <p>
+                                            Tổng tiền: @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(totalAmount)  <br>
+                                            Tiền  ship: @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(0) <br>
+                                            <span class="b">Thanh toán:  @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(totalAmount) </span>
+                                        </p>
+                                    </div>
+                                </div> <!-- row.// -->
+                            </div> <!-- card-body .// -->
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tbody>
+                                        @{
+                                            foreach (var sp in item.CHITIETHOADONs)
+                                            {
+                                                <tr>
+                                                    <td width="65">
+                                                        <img src="~/Images/@sp.SANPHAM.ANH" class="img-xs border">
+                                                    </td>
+                                                    <td>
+                                                        <p class="title mb-0">@sp.SANPHAM.TENSP </p>
+                                                        <var class="price text-muted">@CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(sp.DONGIAXUAT)</var>
+                                                    </td>
+                                                    <td> Số lượng <br> @sp.SOLUONG </td>
+                                                    <td width="250">
+                                                        Thành tiền <br> Thanh toán:  @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(sp.SOLUONG*sp.DONGIAXUAT)
+                                                    </td>
+                                                </tr>
+                                              
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div> <!-- table-responsive .end// -->
+                        </article>
+                    }
+                }
+
+
+
+
+
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

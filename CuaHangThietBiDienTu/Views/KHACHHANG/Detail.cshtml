@@ -1,0 +1,136 @@
+﻿@model CuaHangThietBiDienTu.Context.KHACHHANG
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="section-pagetop bg-gray">
+    <div class="container">
+        <h2 class="title-page">Tài khoản của tôi</h2>
+    </div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION PAGETOP END// ========================= -->
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container">
+
+        <div class="row">
+            <aside class="col-md-3">
+                <nav class="list-group">
+                    <a class="list-group-item active" href="@Url.Action("Detail",new { makh = Session["MAKH"] })"> Thông tin chung </a>
+                    <a class="list-group-item" href="@Url.Action("DonDatHang")"> Đơn hàng </a>
+                    <a class="list-group-item" href="@Url.Action("Edit")">Cài đặt thông tin</a>
+                </nav>
+            </aside> <!-- col.// -->
+            <main class="col-md-9">
+
+                <article class="card mb-3">
+                    <div class="card-body">
+
+                        <figure class="icontext">
+                            <div class="icon">
+                                <img class="rounded-circle img-sm border" src="~/Content/images/avatars/avatar3.jpg">
+                            </div>
+                            <div class="text">
+                                <strong> @Model.TENKH </strong> <br>
+                                <p class="mb-2"> @Model.EMAIL </p>
+                                <a href="@Url.Action("Edit")" class="btn btn-light btn-sm">Chỉnh sửa</a>
+                            </div>
+                        </figure>
+                        <hr>
+                        <p>
+                            <i class="fa fa-map-marker text-muted"></i> &nbsp; Địa chỉ của tôi:
+                            <br>
+                          @Model.DIACHI
+                          
+                        </p>
+
+
+
+                        <article class="card-group card-stat">
+                            <figure class="card bg">
+                                <div class="p-3"> 
+                                    <h4 class="title">@Model.HOADONs.Count</h4>
+                                    <span>Đơn đặt hàng</span>
+                                </div>
+                            </figure>
+                            <figure class="card bg">
+                                <div class="p-3">
+                                    <h4 class="title">
+                                        @Model.HOADONs.Where(hd => hd.TINHTRANGDONHANG == "Giao hàng thành công").Sum(hd => hd.CHITIETHOADONs.Sum(ct => ct.SOLUONG))
+                                    </h4>
+                                    <span>Sản phẩm đã mua</span>
+                                </div>
+                            </figure>
+                            <figure class="card bg">
+                                <div class="p-3">
+                                    <h4 class="title">@Model.HOADONs.Count(hd => hd.TINHTRANGDONHANG != "Giao hàng thành công")</h4>
+                                    <span>Đơn hàng đang giao</span>
+                                </div>
+                            </figure>
+                            <figure class="card bg">
+                                <div class="p-3">
+                                    <h4 class="title">@Model.HOADONs.Count(hd => hd.TINHTRANGDONHANG == "Giao hàng thành công")</h4>
+                                    <span>Đơn hàng đã giao</span>
+                                </div>
+                            </figure>
+                        </article>
+
+
+                    </div> <!-- card-body .// -->
+                </article> <!-- card.// -->
+
+                <article class="card  mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title mb-4">Đơn hàng gần đây</h5>
+
+                        <div class="row">
+
+                            @{
+                                int totalItemCount = 0; // Biến đếm tổng số lượng sản phẩm đã hiển thị
+                            }
+
+                            @foreach (var item in Model.HOADONs.OrderByDescending(ct => ct.NGAYTAO))
+                            {
+                                foreach (var cthd in item.CHITIETHOADONs)
+                                {
+                                    if (totalItemCount >= 4)
+                                    {
+                                        break; // Thoát khỏi vòng lặp bên trong khi đã hiển thị đủ 4 sản phẩm
+                                    }
+
+                                    <div class="col-md-6">
+                                        <figure class="itemside  mb-3">
+                                            <div class="aside"><img src="~/Images/@cthd.SANPHAM.ANH" class="border img-sm"></div>
+                                            <figcaption class="info">
+                                                <time class="text-muted"><i class="fa fa-calendar-alt"></i> @(item.NGAYTAO?.ToString("dd/MM/yyyy"))</time>
+                                                <p>@cthd.SANPHAM.TENSP</p>
+                                                <span class="text-success">@item.TINHTRANGDONHANG</span>
+                                            </figcaption>
+                                        </figure>
+                                    </div>
+
+                                    totalItemCount++; // Tăng biến đếm tổng số lượng sản phẩm đã hiển thị
+                                }
+
+                                if (totalItemCount >= 4)
+                                {
+                                    break; // Thoát khỏi vòng lặp bên ngoài khi đã hiển thị đủ 3 sản phẩm
+                                }
+                            }
+
+
+                        </div> <!-- row.// -->
+
+                        <a href="@Url.Action("DonDatHang")" class="btn btn-outline-primary btn-block"> See all orders <i class="fa fa-chevron-down"></i>  </a>
+                    </div> <!-- card-body .// -->
+                </article> <!-- card.// -->
+
+            </main> <!-- col.// -->
+        </div>
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.THONGSOKYTHUAT>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2 style="text-align:center">Danh sách thông số kỹ thuật</h2>
+    <a href="@Url.Action("Create", "THONGSOKYTHUATs")" class="btn btn-primary m-2">Tạo mới</a>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MATSKT)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HEDIEUHANH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RAM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ROM)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KICHCOMANHINH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VIXULY)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PIN)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MATSKT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HEDIEUHANH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RAM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ROM)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KICHCOMANHINH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VIXULY)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PIN)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Edit", "THONGSOKYTHUATs", new { id = item.MATSKT })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "THONGSOKYTHUATs", new { id = item.MATSKT })">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "THONGSOKYTHUATs", new { id = item.MATSKT })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

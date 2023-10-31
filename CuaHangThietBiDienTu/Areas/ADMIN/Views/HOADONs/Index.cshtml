@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.HOADON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Danh sách hóa đơn</h2>
+
+    <a href="@Url.Action("Create", "HOADONs")" class="btn btn-primary m-2">Tạo mới</a>
+
+    <table class="table">
+        <tr>
+            <th>Mã hóa đơn</th>
+            <th>
+                Ngày tạo
+            </th>
+            <th>
+                Tình trạng đơn hàng
+            </th>
+            <th>
+                Tên khách hàng
+            </th>
+            <th>
+                Tên nhân viên
+            </th>
+            <th>
+                Mã khách hàng
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(modelItem => item.MAHOADON)</td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYTAO)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TINHTRANGDONHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.MAKH)
+                </td>
+                <td >
+
+                    <a href="@Url.Action("Edit", "HOADONs", new { id = item.MAHOADON })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="30">
+                    </a>
+                    <a href="@Url.Action("Details", "HOADONs", new { id = item.MAHOADON })">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="30">
+                    </a>
+                    <a href="@Url.Action("Delete", "HOADONs", new { id = item.MAHOADON })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="30">
+                    </a>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>

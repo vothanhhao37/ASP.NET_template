@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="deb8d4331834403e9e2fe283bb975fa3" Name="Diagram1">
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.CHITIETHOADON" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.CHITIETPHIEUNHAP" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.GIOHANG" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.HOADON" Width="1.5" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.LOAISANPHAM" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.NHANVIEN" Width="1.5" PointX="0.75" PointY="10.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.PHIEUNHAP" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.SANPHAM" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.THONGSOKYTHUAT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CUAHANGTHIETBIDIENTUModel.THUONGHIEU" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__CHITIETHO__MAHOA__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__CHITIETHOA__MASP__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__CHITIETPHI__MAPN__628FA481" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__CHITIETPHI__MASP__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__GIOHANG__MAKH__66603565" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__GIOHANG__MASP__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__HOADON__MAKH__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__HOADON__MANV__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__SANPHAM__MALOAIS__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__PHIEUNHAP__MANV__5FB337D6" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__SANPHAM__MATH__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="CUAHANGTHIETBIDIENTUModel.FK__SANPHAM__MATSKT__59063A47" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.CHITIETHOADON>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center"> Danh sách chi tiết hóa đơn</h2>
+
+    <a href="@Url.Action("Create", "CHITIETHOADONs")" class="btn btn-primary m-2">Tạo mới</a>
+
+    <table class="table">
+        <tr>
+            <th>
+                Mã hóa đơn
+            </th>
+            <th>
+               mã sản phẩm
+            </th>
+            <th>
+               Số lượng
+            </th>
+            <th>
+              Đơn giá xuất
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAHOADON)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DONGIAXUAT)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "CHITIETHOADONs", new { maHoaDon=item.MAHOADON,maSP =item.MASP })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "CHITIETHOADONs", new { maHoaDon=item.MAHOADON,maSP =item.MASP})">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "CHITIETHOADONs", new {maHoaDon=item.MAHOADON,maSP =item.MASP })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

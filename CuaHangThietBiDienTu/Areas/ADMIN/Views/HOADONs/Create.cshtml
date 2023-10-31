@@ -1,0 +1,76 @@
+﻿@model CuaHangThietBiDienTu.Context.HOADON
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Lập hóa đơn</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h2>Điền vào hóa đơn</h2>
+    <div class="form-group">
+        <label>Mã hóa đơn </label>
+        <input type="text" class="form-control ml-2" readonly value="@ViewBag.MAHOADON" name="MASP" style="width:82%">
+    </div>
+
+    <div class="form-group">
+        <label>Mã nhân viên</label>
+        <div class="col-md-10">
+            @Html.DropDownList("MANV", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Mã khách hàng</label>
+        <div class="col-md-10">
+            @Html.DropDownList("MAKH", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.MAKH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Ngày tạo hóa đơn</label>
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.NGAYTAO, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+            @Html.ValidationMessageFor(model => model.NGAYTAO, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Tình trạng đơn hàng</label>
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.TINHTRANGDONHANG, new System.Collections.Generic.List<System.Web.Mvc.SelectListItem>
+            {
+                new System.Web.Mvc.SelectListItem { Text = "Hẹn ngày giao", Value = "Hẹn ngày giao" },
+                new System.Web.Mvc.SelectListItem { Text = "Đang giao hàng", Value = "Đang giao hàng" },
+                new System.Web.Mvc.SelectListItem { Text = "Giao hàng thành công", Value = "Giao hàng thành công" },
+                new System.Web.Mvc.SelectListItem { Text = "Giao hàng thất bại", Value = "Giao hàng thất bại" },
+                new System.Web.Mvc.SelectListItem { Text = "Chờ xác nhận", Value = "Chờ xác nhận" },
+                new System.Web.Mvc.SelectListItem { Text = "Đã đặt hàng", Value = "Đã đặt hàng" }
+            }, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.TINHTRANGDONHANG, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Tạo mới hóa đơn" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+    }
+
+    <div>
+        @Html.ActionLink("Trở về trang danh sách", "Index")
+    </div>
+
+</div>

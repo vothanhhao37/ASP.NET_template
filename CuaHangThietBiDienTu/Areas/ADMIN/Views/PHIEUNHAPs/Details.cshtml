@@ -1,0 +1,35 @@
+﻿@model CuaHangThietBiDienTu.Context.PHIEUNHAP
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+    <h4>Phiếu nhập</h4>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ngày nhập
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYNHAP)
+        </dd>
+
+        <dt>
+            Tên nhân viên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHANVIEN.TENNV)
+        </dd>
+        <p>
+            @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MAPN }) |
+            @Html.ActionLink("Trở về trang danh sách", "Index")
+        </p>
+    </dl>
+</div>
+

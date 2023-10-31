@@ -1,0 +1,88 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="pl-4 pt-4 pb">
+    <h1 style="text-align:center">Tính toán số sản phẩm bán được theo loại</h1>
+
+    <div style="display:flex;justify-content:center">
+        @using (Html.BeginForm( "TinhToanSoLuongBanDuocTheoLoai", "TinhToanSoLuongBanHang", FormMethod.Post, new { @class = "form-inline", autocomplete = "off" }))
+        {
+            <div class="form-group">
+                @Html.Label("Ngày bắt đầu:", new { @class = "mr-2" })
+                <div class="input-group">
+                    <div class="datepicker-container">
+                        @Html.TextBox("ngayBatDau", null, new { @class = "form-control datepicker", type = "date", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ml-4">
+                @Html.Label("Ngày kết thúc:", new { @class = "mr-2" })
+                <div class="input-group">
+                    <div class="datepicker-container">
+                        @Html.TextBox("ngayKetThuc", null, new { @class = "form-control datepicker", type = "date", autocomplete = "off", required = "required" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Loại sản phẩm:", new { @class = "mr-2" })
+                @Html.DropDownList("loaisp", ViewBag.DSLSP as SelectList, "-- Chọn loại sản phẩm --", new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-primary ml-4">Tính toán</button>
+        }
+
+    </div>
+
+    @{
+        
+            <table class="table table-striped mt-2">
+                <thead>
+                    <tr>
+                        <th>Loại sản phẩm</th>
+                        <th>Số lượng bán được</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr>
+                        <td>@ViewBag.tenloaisp</td>
+                        <td>@ViewBag.SLBD </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        
+           
+    }
+
+
+
+
+
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+
+            $(function () {
+                $('form').submit(function (event) {
+                    var ngayBatDau = new Date($('#ngayBatDau').val()).getFullYear();
+                    var ngayKetThuc = new Date($('#ngayKetThuc').val()).getFullYear();
+                    if (!(ngayBatDau >= 1900 && ngayBatDau <= 2099 & ngayKetThuc >= 1900 && ngayKetThuc <= 2099)) {
+                        alert("Vui lòng nhập cho đúng định dang năm từ năm 1900 đến năm 2099");
+                        event.preventDefault();
+                    }
+
+
+                });
+            });
+        </script>
+
+
+
+
+    }
+</div>

@@ -1,0 +1,414 @@
+﻿@model PagedList.IPagedList<CuaHangThietBiDienTu.Context.SANPHAM>
+@{
+    ViewBag.Title = "SanPhamTheoLoai";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<section class="section-content padding-y">
+    <div class="container">
+        <div class="row">
+            <aside class="col-md-2">
+
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">
+                            Loại sản phẩm
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse" id="collapse_1">
+                        <div class="inner">
+                            @{
+                                foreach (var item in ViewBag.listLoaiSP)
+                                {
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="loaiSanPham">
+                                        <div class="custom-control-label">
+                                            @item.TENLOAISP
+                                        </div>
+                                    </label>
+                                }
+                            }
+
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">
+                            Thương hiệu
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse" id="collapse_2">
+                        <div class="inner">
+                            @{
+                                foreach (var item in ViewBag.listThuongHieu)
+                                {
+                                    <label class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" name="thuongHieu">
+                                        <div class="custom-control-label">
+                                            @item.TENTHUONGHIEU
+
+                                        </div>
+                                    </label>
+                                }
+                            }
+
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">
+                            Hệ điều hành
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse " id="collapse_3">
+                        <div class="inner">
+
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <div class="custom-control-label">
+                                    Android
+
+                                </div>
+                            </label>
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <div class="custom-control-label">
+                                    IOS
+
+                                </div>
+                            </label>
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <div class="custom-control-label">
+                                    Windows
+
+                                </div>
+                            </label>
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" name="heDieuHanh">
+                                <div class="custom-control-label">
+                                    MacOS
+
+                                </div>
+                            </label>
+
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_4">
+                            Giá
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse show" id="collapse_4">
+                        <div class="inner">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label>Min</label>
+                                    <input class="form-control" placeholder="Min" type="number" name="giaMin">
+                                </div>
+                                <div class="form-group text-right col-md-6">
+                                    <label>Max</label>
+                                    <input class="form-control" placeholder="Max" type="number" name="giaMax">
+                                </div>
+                            </div> <!-- form-row.// -->
+
+                        </div> <!-- inner.// -->
+                    </div>
+                </article> <!-- filter-group .// -->
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_5">
+                            RAM
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse " id="collapse_5">
+                        <div class="inner">
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="RAM">
+                                <span class="btn btn-light"> 4 GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="RAM">
+                                <span class="btn btn-light"> 6GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="RAM">
+                                <span class="btn btn-light"> 8 GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="RAM">
+                                <span class="btn btn-light"> 12 GB </span>
+                            </label>
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="RAM">
+                                <span class="btn btn-light"> 16 GB </span>
+                            </label>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
+                <article class="filter-group">
+                    <h6 class="title">
+                        <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_6">
+                            ROM
+                        </a>
+                    </h6>
+                    <div class="filter-content collapse " id="collapse_6">
+                        <div class="inner">
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="ROM">
+                                <span class="btn btn-light"> 32 GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="ROM">
+                                <span class="btn btn-light"> 64 GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="ROM">
+                                <span class="btn btn-light"> 128 GB </span>
+                            </label>
+
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="ROM">
+                                <span class="btn btn-light"> 256 GB </span>
+                            </label>
+                            <label class="checkbox-btn">
+                                <input type="checkbox" name="ROM">
+                                <span class="btn btn-light"> 512 GB </span>
+                            </label>
+                        </div> <!-- inner.// -->
+                    </div>
+                </article>
+
+
+                <button id="btnApplyFilter" class="btn btn-block btn-primary">Áp dụng</button>
+
+            </aside> <!-- col.// -->
+            <main class="col-md-10">
+
+
+                <header class="mb-3">
+                    <div class="form-inline">
+                        <strong class="mr-md-auto">@Model.TotalItemCount sản phẩm được tìm thấy </strong>
+                        <a href="@Url.Action("DanhSachSanPham", "LOAISANPHAM", new { order = "desc" })" class="btn btn-outline-primary mr-2">
+                            Giá giảm dần <i class="fas fa-arrow-down"></i>
+                        </a>
+
+                        <a href="@Url.Action("DanhSachSanPham", "LOAISANPHAM", new { order = "asc" })" class="btn btn-outline-primary">
+                            Giá tăng dần <i class="fas fa-arrow-up"></i>
+                        </a>
+
+                    </div>
+                </header><!-- sect-heading -->
+                @foreach (var item in Model)
+                {
+
+                    <article class="card card-product-list">
+                        <div class="row no-gutters">
+                            <aside class="col-md-4">
+                                <a href="@Url.Action("Detail", "SANPHAM", new { id = item.MASP })" class="img-wrap">
+                                    <span class="badge badge-danger"> NEW </span>
+                                    <img src="~/Images/@item.ANH">
+                                </a>
+                            </aside> <!-- col.// -->
+                            <div class="col-md-5">
+                                <div class="info-main">
+                                    <a href="@Url.Action("Detail", "SANPHAM", new { id = item.MASP })" class="h5 title"> @item.TENSP</a>
+                                    <div class="rating-wrap mb-2">
+                                        <ul class="rating-stars">
+                                            <li style="width:100%" class="stars-active">
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                            <li>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                                <i class="fa fa-star"></i>
+                                            </li>
+                                        </ul>
+                                        <div class="label-rating">9/10</div>
+                                    </div> <!-- rating-wrap.// -->
+
+                                    <p class="mb-3">
+                                        <span class="tag"> @item.LOAISANPHAM.TENLOAISP</span>
+                                        <span class="tag"> @item.THONGSOKYTHUAT.KICHCOMANHINH inch</span>
+                                        <span class="tag"> Còn @item.SOLUONG sản phẩm </span>
+                                        <span class="tag"> @item.THUONGHIEU.TENTHUONGHIEU </span>
+                                    </p>
+
+                                    <p>
+                                        @item.MOTA
+                                    </p>
+
+                                </div> <!-- info-main.// -->
+                            </div> <!-- col.// -->
+                            <aside class="col-sm-3">
+                                <div class="info-aside">
+                                    <div class="price-wrap">
+                                        <span class="h5 price">@CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(item.DONGIA)</span>
+
+                                    </div> <!-- price-wrap.// -->
+                                    <small class="text-success">Free ship</small>
+
+                                    <p class="text-muted mt-3">@item.LOAISANPHAM.TENLOAISP</p>
+                                    <p class="mt-3">
+                                        <a href="javascript:void(0)" class="btn btn-outline-primary" onclick="addToCart('@item.MASP')">
+                                            <i class="fa fa-cart-arrow-down"></i>
+                                            Thêm vào giỏ hàng
+                                        </a>
+
+
+                                    </p>
+
+
+
+                                </div> <!-- info-aside.// -->
+                            </aside> <!-- col.// -->
+                        </div> <!-- row.// -->
+                    </article>
+                }
+
+                <!-- Template điều hướng phân trang -->
+                <nav class="mb-4" aria-label="Page navigation sample">
+                    <ul class="pagination">
+                        @if (Model.PageCount > 1)
+                        {
+                            <!-- Nút Previous -->
+                            if (Model.HasPreviousPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("DanhSachSanPham", new { page = Model.PageNumber - 1 })">Previous</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">Previous</a>
+                                </li>
+                            }
+
+                            <!-- Các nút trang -->
+                            for (int i = 1; i <= Model.PageCount; i++)
+                            {
+                                <li class="page-item @(Model.PageNumber == i ? "active" : "")">
+                                    <a class="page-link" href="@Url.Action("DanhSachSanPham", new { page = i })">@i</a>
+                                </li>
+                            }
+
+                            <!-- Nút Next -->
+                            if (Model.HasNextPage)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="@Url.Action("DanhSachSanPham", new { page = Model.PageNumber + 1 })">Next</a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </nav>
+
+
+            </main> <!-- col.// -->
+
+        </div>
+        <form action="/LOAISANPHAM/LocSanPham" id="duLieuBoLoc" style="display:none">
+            <!-- Đặt input elements cho loaisanpham, hedieuhanh, thuonghieu, ram, rom, giamin, và giamax ở đây -->
+            <input type="hidden" name="loaisanpham" value="" />
+            <input type="hidden" name="hedieuhanh" value="" />
+            <input type="hidden" name="thuonghieu" value="" />
+            <input type="hidden" name="ram" value="" />
+            <input type="hidden" name="rom" value="" />
+            <input type="hidden" name="giamin" value="" />
+            <input type="hidden" name="giamax" value="" />
+
+            <!-- Nút gửi form -->
+            <button type="submit">Gửi</button>
+        </form>
+    </div> <!-- container .//  -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+
+            $('#btnApplyFilter').click(function (e) {
+                e.preventDefault(); // Ngăn chặn hành vi mặc định của thẻ a (chuyển hướng)
+                // lọc thông tin check box
+
+                var LSP = [];
+                $('input[name=loaiSanPham]:checked').each(function () {
+                    LSP.push($(this).parent().text().trim());
+                });
+                var HDH = [];
+                $('input[name=heDieuHanh]:checked').each(function () {
+                    HDH.push($(this).parent().text().trim());
+                });
+                var TH = [];
+                $('input[name=thuongHieu]:checked').each(function () {
+                    TH.push($(this).parent().text().trim());
+                });
+                var RAM = [];
+                $('input[name=RAM]:checked').each(function () {
+                    RAM.push($(this).parent().text().trim());
+                });
+                var ROM = [];
+                $('input[name=ROM]:checked').each(function () {
+                    ROM.push($(this).parent().text().trim());
+                });
+
+                var Gmin = $("input[name='giaMin']").val();
+                var Gmax = $("input[name='giaMax']").val();
+                // Gửi dữ liệu bộc lọc đến action
+                $("input[name='loaisanpham']").val(LSP);
+                $("input[name='hedieuhanh']").val(HDH);
+                $("input[name='thuonghieu']").val(TH);
+                $("input[name='ram']").val(RAM);
+                $("input[name='rom']").val(ROM);
+                $("input[name='giamin']").val(Gmin);
+                $("input[name='giamax']").val(Gmax);
+                $("# ").submit();
+
+            });
+
+
+        });
+          function addToCart(masp) {
+            
+               var soluong = 1 // Lấy số lượng từ input
+            $.ajax({
+                url: '@Url.Action("ThemVaoGioHang", "GioHang")', // URL của phương thức "ThemVaoGioHang" trong controller
+                type: 'POST',
+                data: { masp: masp, soluong: soluong }, // Truyền dữ liệu masp và soluong
+                success: function (response) {
+                    if (response.success) {
+                        $("#CartCount").text(response.slgh);
+                    } else {
+                        // Chuyển sang trang đăng nhập nếu chưa đăng nhập
+                        window.location.href = "/Authentication/DangNhap";
+                    }
+                },
+                error: function () {
+                    alert("Có lỗi xảy ra khi thêm vào giỏ hàng!");
+                }
+            });
+        }
+       
+    </script>
+
+</section>

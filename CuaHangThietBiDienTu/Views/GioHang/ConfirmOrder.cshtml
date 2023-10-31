@@ -1,0 +1,93 @@
+﻿@model List<CuaHangThietBiDienTu.Models.XacNhanDatHangModel>
+@{
+    ViewBag.Title = "ConfirmOrder";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<b class="screen-overlay"></b>
+
+<!-- ========================= SECTION PAGETOP ========================= -->
+<section class="section-pagetop bg-gray">
+    <div class="container">
+        <h2 class="title-page text-center">Xác nhận đặt hàng</h2>
+    </div> <!-- container //  -->
+</section>
+<!-- ========================= SECTION PAGETOP END// ========================= -->
+<!-- ========================= SECTION CONTENT ========================= -->
+<section class="section-content padding-y">
+    <div class="container d-flex justify-content-center">
+
+
+
+        <main class="col-md-9">
+
+            <article class="card mb-4">
+                <header class="card-header">
+
+
+                    <span>
+                        Ngày đặt hàng: @DateTime.Now.ToString("dd/MM/yyyy")</p>
+                    </span>
+                </header>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6 class="text-muted">Giao đến</h6>
+                            <p>
+                                @Session["TENKH"] <br>
+                                Số điện thoại: @Session["SDT"]  <br>
+                                Địa chỉ: @Session["DIACHI"] <br>
+
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Thanh toán</h6>
+                            <span class="text-success">
+                                <i class="fab fa fa-money-bill"></i>
+
+                                Thanh toán khi nhận hàng
+                            </span>
+                            <p>
+                                Tổng tiền:  @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(Model.Sum(item => item.SOLUONG * item.DONGIA)) <br>
+                                Phí ship:  @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(0) <br>
+                                <span class="b">Số tiền cần thanh toán: @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(Model.Sum(item => item.SOLUONG * item.DONGIA)) </span>
+                            </p>
+                        </div>
+                    </div> <!-- row.// -->
+                </div> <!-- card-body .// -->
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            @{
+
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="65">
+                                            <img src="~/Images/@item.ANHSP" class="img-xs border">
+                                        </td>
+                                        <td>
+                                            <p class="title mb-0">@item.TENSP </p>
+                                            <var class="price text-muted">@CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(item.DONGIA)</var>
+                                        </td>
+                                        <td> Số lượng <br> @item.SOLUONG </td>
+                                        <td width="250"> Thành tiền <br> @CuaHangThietBiDienTu.Common.Common.FormatNumberWithDotsAndCurrency(item.SOLUONG * item.DONGIA) </td>
+                                    </tr>
+                                }
+                            }
+
+
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center">
+                        <a href="@Url.Action("DatHangThanhCong","GioHang")" class="btn btn-primary float-md-right m-3"> Đặt hàng </a>
+                    </div>
+                </div> <!-- table-responsive .end// -->
+            </article> <!-- card order-item .// -->
+
+        </main> <!-- col.// -->
+
+
+    </div> <!-- container .//  -->
+</section>
+<!-- ========================= SECTION CONTENT END// ========================= -->

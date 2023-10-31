@@ -1,0 +1,77 @@
+﻿@model CuaHangThietBiDienTu.Context.THONGSOKYTHUAT
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+    <h4>Thông số kỹ thuật</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Hệ điều hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HEDIEUHANH)
+        </dd>
+
+        <dt>
+            RAM
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+
+        <dt>
+            ROM
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROM)
+        </dd>
+
+        <dt>
+            Kích cỡ màn hình
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KICHCOMANHINH)
+        </dd>
+
+        <dt>
+            Vi xử lý
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIXULY)
+        </dd>
+
+        <dt>
+            PIN
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIN)
+        </dd>
+
+        <dt>
+            CAMERA
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAMERA)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MATSKT }) |
+        @Html.ActionLink("Trở về trang danh sách", "Index")
+    </p>
+</div>
+

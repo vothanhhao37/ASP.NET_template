@@ -1,0 +1,61 @@
+﻿@model CuaHangThietBiDienTu.Context.CHITIETPHIEUNHAP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Xóa chi tiết phiếu nhập</h2>
+    <h3>Bạn chắc chắn muốn xóa chứ?</h3>
+    <div>
+        <h4>Chi tiết phiếu nhập</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Mã phiếu nhập
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MAPN)
+            </dd>
+
+            <dt>
+                Mã sản phẩm
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MASP)
+            </dd>
+
+            <dt>
+                Số lượng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SOLUONG)
+            </dd>
+
+            <dt>
+                Đơn giá nhập
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DONGIANHAP)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Trở lại trang danh sách", "Index")
+            </div>
+        }
+    </div>
+
+</div>
+

@@ -1,0 +1,169 @@
+﻿@model CuaHangThietBiDienTu.Context.KHACHHANG
+
+@{
+    ViewBag.Title = "DangKy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-md-center mt-5 mb-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="text-center">Đăng ký</h4>
+            </div>
+            <div class="card-body">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <label for="TENKH">Họ và tên</label>
+                        @Html.EditorFor(model => model.TENKH, new { htmlAttributes = new { @class = "form-control", id = "TENKH" } })
+                        @Html.ValidationMessageFor(model => model.TENKH, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="TAIKHOAN">Tên tài khoản</label>
+                        @Html.EditorFor(model => model.TAIKHOAN, new { htmlAttributes = new { @class = "form-control", id = "TAIKHOAN" } })
+                        @Html.ValidationMessageFor(model => model.TAIKHOAN, "", new { @class = "text-danger" })
+                        <small class="form-text text-muted">Chúng tôi sẽ không chia sẻ tài khoản của bạn cho bất kỳ ai khác.</small>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="MATKHAU">Mật khẩu</label>
+                            @Html.PasswordFor(model => model.MATKHAU, new { @class = "form-control", id = "MATKHAU" })
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="CONFIRM-MATKHAU">Nhập lại mật khẩu</label>
+                            <input type="password" class="form-control" id="CONFIRM-MATKHAU" />
+                            <div id="password-error" class="text-danger"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="DIACHI">Địa chỉ</label>
+                        @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control", id = "DIACHI" } })
+                        @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="SDT">Số điện thoại</label>
+                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control", id = "SDT" } })
+                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="EMAIL">Địa chỉ email</label>
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control", id = "EMAIL" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CMND">CMND</label>
+                        @Html.EditorFor(model => model.CMND, new { htmlAttributes = new { @class = "form-control", id = "CMND" } })
+                        @Html.ValidationMessageFor(model => model.CMND, "", new { @class = "text-danger" })
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Đăng ký" class="btn btn-primary btn-block" id="register-button" />
+                    </div>
+                }
+            </div>
+        </div>
+        <p class="text-center mt-4" style="font-size:20px">Đã có tài khoản? <a href="@Url.Action("DangNhap")">Đăng nhập</a></p>
+        <br><br>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        // Khi người dùng nhập lại mật khẩu, kiểm tra trùng khớp
+        $("#CONFIRM-MATKHAU").keyup(function () {
+            var password = $("#MATKHAU").val();
+            var confirmPassword = $(this).val();
+            if (password !== confirmPassword) {
+                $("#password-error").text("Mật khẩu không trùng khớp");
+            } else {
+                $("#password-error").text("");
+            }
+        });
+
+        // Khi người dùng bấm nút đăng ký
+        $("#register-button").click(function (event) {
+            var valid = true;
+            $(".text-danger").text(""); // Xóa thông báo lỗi cũ
+
+            // Kiểm tra từng trường nhập
+            if ($("#TENKH").val() === "") {
+                valid = false;
+                $("#TENKH").next(".text-danger").text("Bạn không được bỏ trống vùng này");
+                $("#TENKH").focus();
+            }
+
+            if ($("#TAIKHOAN").val() === "") {
+                valid = false;
+                $("#TAIKHOAN").next(".text-danger").text("Bạn không được bỏ trống vùng này");
+                if (valid) {
+                    $("#TAIKHOAN").focus();
+                }
+            }
+
+            if ($("#MATKHAU").val() === "") {
+                valid = false;
+                $("#MATKHAU").next(".text-danger").text("Bạn không được bỏ trống vùng này");
+                if (valid) {
+                    $("#MATKHAU").focus();
+                }
+            }
+
+            if ($("#CONFIRM-MATKHAU").val() === "") {
+                valid = false;
+                $("#CONFIRM-MATKHAU").next(".text-danger").text("Bạn không được bỏ trống vùng này");
+                if (valid) {
+                    $("#CONFIRM-MATKHAU").focus();
+                }
+            }
+
+            // Kiểm tra độ dài tên tài khoản và mật khẩu
+            var username = $("#TAIKHOAN").val();
+            if (username.length < 8 || username.length > 16) {
+                valid = false;
+                $("#TAIKHOAN").next(".text-danger").text("Tên tài khoản phải dài từ 8 đến 16 ký tự");
+                if (valid) {
+                    $("#TAIKHOAN").focus();
+                }
+            }
+
+            var password = $("#MATKHAU").val();
+            if (password.length < 8 || password.length > 16) {
+                valid = false;
+                $("#MATKHAU").next(".text-danger").text("Mật khẩu phải dài từ 8 đến 16 ký tự");
+                if (valid) {
+                    $("#MATKHAU").focus();
+                }
+            }
+
+            // Kiểm tra định dạng email
+          
+
+            // Kiểm tra CMND
+            var cmnd = $("#CMND").val();
+            var cmndRegex = /^\d{1,13}$/;
+            if (!cmndRegex.test(cmnd)) {
+                valid = false;
+                $("#CMND").next(".text-danger").text("CMND không hợp lệ");
+                if (valid) {
+                    $("#CMND").focus();
+                }
+            }
+
+            if (!valid) {
+                event.preventDefault(); // Ngăn chặn gửi form nếu có lỗi
+            }
+        });
+    });
+</script>
+
+

@@ -1,0 +1,53 @@
+﻿@model CuaHangThietBiDienTu.Context.HOADON
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+    <h4>Hóa đơn</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Ngày tạo
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYTAO)
+        </dd>
+
+        <dt>
+            Tình trạng đơn hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TINHTRANGDONHANG)
+        </dd>
+
+        <dt>
+            Tên khách hàng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.TENKH)
+        </dd>
+
+        <dt>
+            Tên nhân viên
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHANVIEN.TENNV)
+        </dd>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MAHOADON }) |
+        @Html.ActionLink("Trở về trang danh sách", "Index")
+    </p>
+</div>
+

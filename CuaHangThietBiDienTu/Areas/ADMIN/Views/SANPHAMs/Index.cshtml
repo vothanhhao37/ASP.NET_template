@@ -1,0 +1,71 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.SANPHAM>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2 style="text-align:center">Danh sách sản phẩm</h2>
+
+    <a href="@Url.Action("Create", "SANPHAMs")" class="btn btn-primary m-2">Tạo mới</a>
+    <table class="table">
+        <tr>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Đơn giá
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Loại sản phẩm
+            </th>
+            <th>
+                Thương hiệu
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DONGIA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LOAISANPHAM.TENLOAISP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.THUONGHIEU.TENTHUONGHIEU)
+                </td>
+
+                <td>
+                    <a href="@Url.Action("Edit", "SANPHAMs", new { id = item.MASP })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "SANPHAMs", new { id = item.MASP })">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "SANPHAMs", new { id = item.MASP })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

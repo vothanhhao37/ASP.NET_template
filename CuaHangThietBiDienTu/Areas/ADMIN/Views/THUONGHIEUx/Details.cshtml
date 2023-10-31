@@ -1,0 +1,39 @@
+﻿@model CuaHangThietBiDienTu.Context.THUONGHIEU
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+    <div>
+        <h4>Thương hiệu</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Tên thương hiệu
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TENTHUONGHIEU)
+            </dd>
+
+            <dt>
+                Quốc gia
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.QUOCGIA)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MATH }) |
+        @Html.ActionLink("Trở về trang danh sách", "Index")
+    </p>
+</div>
+
+
+

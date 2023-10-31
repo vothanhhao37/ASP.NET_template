@@ -1,0 +1,72 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.NHANVIEN>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+<div class="container">
+    <h2 style="text-align:center">Danh sách nhân viên</h2>
+
+    <a href="@Url.Action("Create", "NHANVIENs")" class="btn btn-primary m-2">Tạo mới</a>
+    <table class="table">
+        <tr>
+            <th>
+                <label>Tên nhân viên</label>
+            </th>
+            <th>
+                <label>Địa chỉ</label>
+            </th>
+            <th>
+                <label>Số điện thoại</label>
+            </th>
+            <th>
+                <label>Chức vụ</label>
+            </th>
+            <th>
+                <label>Giới tính</label>
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ISADMIN)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENNV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIACHI)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CHUCVU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIOITINH)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISADMIN)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "NHANVIENs", new { id = item.MANV })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "NHANVIENs", new { id = item.MANV })">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "NHANVIENs", new { id = item.MANV })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

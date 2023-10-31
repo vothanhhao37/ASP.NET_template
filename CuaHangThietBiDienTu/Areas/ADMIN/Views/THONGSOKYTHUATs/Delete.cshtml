@@ -1,0 +1,80 @@
+﻿@model CuaHangThietBiDienTu.Context.THONGSOKYTHUAT
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Xóa thông số kỹ thuật</h2>
+    <h3>Bạn có chắc muốn xóa?</h3>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Hệ điều hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HEDIEUHANH)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ROM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ROM)
+        </dd>
+
+        <dt>
+            Kích cỡ màn hình
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KICHCOMANHINH)
+        </dd>
+
+        <dt>
+            Vi xử lý
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VIXULY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAMERA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAMERA)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Xóa" class="btn btn-danger" /> |
+            @Html.ActionLink("Trở về trang danh sách", "Index")
+        </div>
+    }
+</div>

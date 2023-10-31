@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+@model CuaHangThietBiDienTu.Context.CHITIETHOADON
+
+
+<div class="pl-4 pt-4 pb">
+    <h1 style="text-align:center">Thống kê doanh thu</h1>
+
+    <div style="display:flex;justify-content:center">
+        @using (Html.BeginForm("Filter", "ThongKeDoanhThu", FormMethod.Post, new { @class = "form-inline", autocomplete = "off" }))
+        {
+            <div class="form-group">
+                @Html.Label("Ngày bắt đầu:", new { @class = "mr-2" })
+                <div class="input-group">
+                    <div class="datepicker-container">
+                        @Html.TextBox("ngayBatDau", null, new { @class = "form-control datepicker", type = "date", autocomplete = "off", required = "required" })
+                    </div>
+
+                </div>
+            </div>
+            <div class="form-group ml-4">
+                @Html.Label("Ngày kết thúc:", new { @class = "mr-2" })
+                <div class="input-group">
+                    <div class="datepicker-container">
+                        @Html.TextBox("ngayKetThuc", null, new { @class = "form-control datepicker", type = "date", autocomplete = "off", required = "required" })
+                    </div>
+
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary ml-4">Lọc</button>
+        }
+    </div>
+
+    @if (ViewBag.ChiTietHoaDon != null)
+    {
+        <h3 class="mt-4">Danh sách chi tiết hóa đơn</h3>
+        <table class="table table-striped mt-2">
+            <thead>
+                <tr>
+                    <th>Mã hóa đơn</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Đơn giá</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var chiTiet in ViewBag.ChiTietHoaDon)
+                {
+                    <tr>
+                        <td>@chiTiet.MAHOADON</td>
+                        <td>@chiTiet.MASP</td>
+                        <td>@chiTiet.SANPHAM.TENSP</td>
+                        <td>@chiTiet.SOLUONG</td>
+                        <td>@chiTiet.DONGIAXUAT</td>
+                        <td>@(chiTiet.SOLUONG * chiTiet.DONGIAXUAT)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h4 class="mt-4">Tổng doanh thu: @ViewBag.TongDoanhThu</h4>
+
+        <a href="@Url.Action("Index", "Home")" class="btn btn-secondary">Quay về trang chủ</a>
+        <a href="@Url.Action("ExportToExcel", "ThongKeDoanhThu")" class="btn btn-success">In doanh thu</a>
+    }
+
+    @section Scripts {
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+
+            $(function () {
+                $('form').submit(function (event) {
+                    var ngayBatDau = new Date($('#ngayBatDau').val()).getFullYear();
+                    var ngayKetThuc = new Date($('#ngayKetThuc').val()).getFullYear();
+                    if (!(ngayBatDau >= 1900 && ngayBatDau <= 2099 & ngayKetThuc >= 1900 && ngayKetThuc <= 2099)) {
+                        alert("Vui lòng nhập cho đúng định dang năm từ năm 1900 đến năm 2099");
+                        event.preventDefault();
+                    }
+                        
+                   
+                });
+            });
+        </script>
+
+
+
+
+    }
+</div>

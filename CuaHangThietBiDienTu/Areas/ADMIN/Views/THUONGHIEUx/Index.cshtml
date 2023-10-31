@@ -1,0 +1,50 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.THUONGHIEU>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Danh sách thương hiệu</h2>
+    <a class="btn btn-primary m-2" href="@Url.Action("Create","THUONGHIEUx")">Tạo mới</a>
+
+    <table class="table">
+        <tr>
+            <th>
+                Tên thương hiệu
+            </th>
+            <th>
+                Quốc gia
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TENTHUONGHIEU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QUOCGIA)
+                </td>
+                <td style="text-align:center">
+
+                    <a href="@Url.Action("Edit", "THUONGHIEUx", new { id = item.MATH })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "THUONGHIEUx", new { id = item.MATH })">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "THUONGHIEUx", new { id = item.MATH })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

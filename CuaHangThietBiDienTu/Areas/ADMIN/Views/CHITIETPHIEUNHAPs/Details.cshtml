@@ -1,0 +1,55 @@
+﻿@model CuaHangThietBiDienTu.Context.CHITIETPHIEUNHAP
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center">Thông tin chi tiết</h2>
+    <div>
+        <h4>Chi tiết phiếu nhập</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Mã phiếu nhập
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MAPN)
+            </dd>
+
+            <dt>
+                Mã sản phẩm
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.MASP)
+            </dd>
+
+            <dt>
+                Số lượng
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.SOLUONG)
+            </dd>
+
+            <dt>
+                Đơn giá nhập
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DONGIANHAP)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Chỉnh sửa", "Edit", new { /* id = Model.PrimaryKey */ }) |
+        @Html.ActionLink("Trở lại trang danh sách", "Index")
+    </p>
+</div>
+
+
+

@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CuaHangThietBiDienTu.Context.CHITIETPHIEUNHAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2 style="text-align:center"> Danh sách chi tiết phiếu nhập</h2>
+    <a href="@Url.Action("Create", "CHITIETPHIEUNHAPs")" class="btn btn-primary m-2">Tạo mới</a>
+    <table class="table">
+        <tr>
+            <th>
+                Mã phiếu nhập
+            </th>
+            <th>
+                Mã sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá nhập
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAPN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MASP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DONGIANHAP)
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "CHITIETPHIEUNHAPs", new { maPhieuNhap=item.MAPN,maSP =item.MASP })">
+                        <img src="~/Images/edit.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Details", "CHITIETPHIEUNHAPs", new { maPhieuNhap=item.MAPN,maSP =item.MASP})">
+                        <img src="~/Images/details.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                    <a href="@Url.Action("Delete", "CHITIETPHIEUNHAPs", new {maPhieuNhap=item.MAPN,maSP =item.MASP })">
+                        <img src="~/Images/delete.png" alt="Edit" class="icon" width="40px">
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+

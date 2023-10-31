@@ -1,0 +1,83 @@
+﻿@model CuaHangThietBiDienTu.Context.SANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ADMIN/Views/Shared/_Layout.cshtml";
+}
+
+<h2 style="text-align:center">Thông tin chi tiết</h2>
+
+<div class="container">
+    <h4>Sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENSP)
+        </dd>
+
+        <dt>
+            Đơn giá
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONGIA)
+        </dd>
+
+        <dt>
+            Số lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONG)
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MOTA)
+        </dd>
+
+        <dt>
+            Ảnh
+        </dt>
+
+        <dd>
+            <img class="" width="30%" src="~/Images/@Model.ANH">
+        </dd>
+
+        <dt>
+            Loại sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAISANPHAM.TENLOAISP)
+        </dd>
+
+        <dt>
+            Thương hiệu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THUONGHIEU.TENTHUONGHIEU)
+        </dd>
+
+        <dt>
+            Hệ điều hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THONGSOKYTHUAT.HEDIEUHANH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Chỉnh sửa", "Edit", new { id = Model.MASP }) |
+    @Html.ActionLink("Trở về trang danh sách", "Index")
+</p>
